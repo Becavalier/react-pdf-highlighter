@@ -12,6 +12,7 @@
     "prepublishOnly": "npm run build && npm run copy-flow"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.10.2",
     "lodash": "^4.17.10",
     "pdfjs-dist": "2.2.228",
     "react-pointable": "^1.1.1",

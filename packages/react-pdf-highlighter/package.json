@@ -1,6 +1,6 @@
 {
   "name": "@yhspy/react-pdf-highlighter",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Set of React components for PDF annotation",
   "main": "build/index.js",
   "scripts": {

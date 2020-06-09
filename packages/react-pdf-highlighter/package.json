@@ -44,7 +44,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/agentcooper/react-pdf-highlighter.git"
+    "url": "git+https://github.com/Becavalier/react-pdf-highlighter.git"
   },
   "bugs": {
     "url": "https://github.com/agentcooper/react-pdf-highlighter/issues"

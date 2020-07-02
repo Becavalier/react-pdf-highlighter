@@ -13,12 +13,12 @@ const getClientRects = (
 
   const offset = containerEl.getBoundingClientRect();
 
-  const rects = clientRects.map(rect => {
+  const rects = clientRects.map((rect) => {
     return {
       top: rect.top + containerEl.scrollTop - offset.top,
       left: rect.left + containerEl.scrollLeft - offset.left,
       width: rect.width,
-      height: rect.height
+      height: rect.height,
     };
   });
 

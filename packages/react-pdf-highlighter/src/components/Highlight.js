@@ -9,16 +9,16 @@ import type { T_LTWH } from "../types.js";
 type Props = {
   position: {
     boundingRect: T_LTWH,
-    rects: Array<T_LTWH>
+    rects: Array<T_LTWH>,
   },
   onClick?: () => void,
   onMouseOver?: () => void,
   onMouseOut?: () => void,
   comment: {
     emoji: string,
-    text: string
+    text: string,
   },
-  isScrolledTo: boolean
+  isScrolledTo: boolean,
 };
 
 class Highlight extends Component<Props> {
@@ -29,7 +29,7 @@ class Highlight extends Component<Props> {
       onMouseOver,
       onMouseOut,
       comment,
-      isScrolledTo
+      isScrolledTo,
     } = this.props;
 
     const { rects, boundingRect } = position;
@@ -43,7 +43,7 @@ class Highlight extends Component<Props> {
             className="Highlight__emoji"
             style={{
               left: 20,
-              top: boundingRect.top
+              top: boundingRect.top,
             }}
           >
             {comment.emoji}

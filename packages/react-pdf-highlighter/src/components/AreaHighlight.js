@@ -11,7 +11,7 @@ import type { T_ViewportHighlight, T_LTWH } from "../types";
 
 type Props = {
   highlight: T_ViewportHighlight,
-  onChange: (rect: T_LTWH) => void
+  onChange: (rect: T_LTWH) => void,
 };
 
 class AreaHighlight extends Component<Props> {
@@ -25,7 +25,7 @@ class AreaHighlight extends Component<Props> {
           const boundingRect = {
             ...highlight.position.boundingRect,
             top: data.y,
-            left: data.x
+            left: data.x,
           };
 
           onChange(boundingRect);
@@ -35,20 +35,20 @@ class AreaHighlight extends Component<Props> {
             top: position.y,
             left: position.x,
             width: ref.offsetWidth,
-            height: ref.offsetHeight
+            height: ref.offsetHeight,
           };
 
           onChange(boundingRect);
         }}
         position={{
           x: highlight.position.boundingRect.left,
-          y: highlight.position.boundingRect.top
+          y: highlight.position.boundingRect.top,
         }}
         size={{
           width: highlight.position.boundingRect.width,
-          height: highlight.position.boundingRect.height
+          height: highlight.position.boundingRect.height,
         }}
-        onClick={event => {
+        onClick={(event) => {
           event.stopPropagation();
           event.preventDefault();
         }}

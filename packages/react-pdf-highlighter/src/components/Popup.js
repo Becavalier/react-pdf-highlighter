@@ -8,16 +8,16 @@ type Props = {
   onMouseOver: (content: React$Element<*>) => void,
   popupContent: React$Element<*>,
   onMouseOut: () => void,
-  children: React$Element<*>
+  children: React$Element<*>,
 };
 
 type State = {
-  mouseIn: boolean
+  mouseIn: boolean,
 };
 
 class Popup extends Component<Props, State> {
   state: State = {
-    mouseIn: false
+    mouseIn: false,
   };
 
   render() {

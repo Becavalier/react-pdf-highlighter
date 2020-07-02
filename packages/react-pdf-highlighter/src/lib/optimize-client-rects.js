@@ -2,7 +2,7 @@
 
 import type { T_LTWH } from "../types.js";
 
-const sort = rects =>
+const sort = (rects) =>
   rects.sort((A, B) => {
     const top = A.top - B.top;
 
@@ -41,8 +41,8 @@ const optimizeClientRects = (clientRects: Array<T_LTWH>): Array<T_LTWH> => {
 
   const toRemove = new Set();
 
-  const firstPass = rects.filter(rect => {
-    return rects.every(otherRect => {
+  const firstPass = rects.filter((rect) => {
+    return rects.every((otherRect) => {
       return !inside(rect, otherRect);
     });
   });
@@ -50,8 +50,8 @@ const optimizeClientRects = (clientRects: Array<T_LTWH>): Array<T_LTWH> => {
   let passCount = 0;
 
   while (passCount <= 2) {
-    firstPass.forEach(A => {
-      firstPass.forEach(B => {
+    firstPass.forEach((A) => {
+      firstPass.forEach((B) => {
         if (A === B || toRemove.has(A) || toRemove.has(B)) {
           return;
         }
@@ -77,7 +77,7 @@ const optimizeClientRects = (clientRects: Array<T_LTWH>): Array<T_LTWH> => {
     passCount += 1;
   }
 
-  return firstPass.filter(rect => !toRemove.has(rect));
+  return firstPass.filter((rect) => !toRemove.has(rect));
 };
 
 export default optimizeClientRects;

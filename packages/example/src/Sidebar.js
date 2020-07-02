@@ -7,10 +7,10 @@ type T_ManuscriptHighlight = T_Highlight;
 
 type Props = {
   highlights: Array<T_ManuscriptHighlight>,
-  resetHighlights: () => void
+  resetHighlights: () => void,
 };
 
-const updateHash = highlight => {
+const updateHash = (highlight) => {
   document.location.hash = `highlight-${highlight.id}`;
 };
 

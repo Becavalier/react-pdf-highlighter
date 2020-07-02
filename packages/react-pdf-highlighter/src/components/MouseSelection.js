@@ -8,13 +8,13 @@ import type { T_LTWH } from "../types.js";
 
 type Coords = {
   x: number,
-  y: number
+  y: number,
 };
 
 type State = {
   locked: boolean,
   start: ?Coords,
-  end: ?Coords
+  end: ?Coords,
 };
 
 type Props = {
@@ -26,14 +26,14 @@ type Props = {
   onDragStart: () => void,
   onDragEnd: () => void,
   shouldStart: (event: MouseEvent) => boolean,
-  onChange: (isVisible: boolean) => void
+  onChange: (isVisible: boolean) => void,
 };
 
 class MouseSelection extends Component<Props, State> {
   state: State = {
     locked: false,
     start: null,
-    end: null
+    end: null,
   };
 
   root: ?HTMLElement;
@@ -51,7 +51,7 @@ class MouseSelection extends Component<Props, State> {
       top: Math.min(end.y, start.y),
 
       width: Math.abs(end.x - start.x),
-      height: Math.abs(end.y - start.y)
+      height: Math.abs(end.y - start.y),
     };
   }
 
@@ -88,7 +88,7 @@ class MouseSelection extends Component<Props, State> {
 
       return {
         x: pageX - containerBoundingRect.left + container.scrollLeft,
-        y: pageY - containerBoundingRect.top + container.scrollTop
+        y: pageY - containerBoundingRect.top + container.scrollTop,
       };
     };
 
@@ -101,7 +101,7 @@ class MouseSelection extends Component<Props, State> {
 
       that.setState({
         ...this.state,
-        end: containerCoords(event.pageX, event.pageY)
+        end: containerCoords(event.pageX, event.pageY),
       });
     });
 
@@ -122,7 +122,7 @@ class MouseSelection extends Component<Props, State> {
       this.setState({
         start: containerCoords(event.pageX, event.pageY),
         end: null,
-        locked: false
+        locked: false,
       });
 
       const onMouseUp = (event: MouseEvent): void => {
@@ -151,7 +151,7 @@ class MouseSelection extends Component<Props, State> {
         that.setState(
           {
             end,
-            locked: true
+            locked: true,
           },
           () => {
             const { start, end } = that.state;
@@ -185,7 +185,7 @@ class MouseSelection extends Component<Props, State> {
     return (
       <div
         className="MouseSelection-container"
-        ref={node => (this.root = node)}
+        ref={(node) => (this.root = node)}
       >
         {start && end ? (
           <div

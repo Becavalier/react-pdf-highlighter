@@ -6,7 +6,7 @@ type Props = {
   onMoveAway: () => void,
   paddingX: number,
   paddingY: number,
-  children: React$Element<*>
+  children: React$Element<*>,
 };
 
 class MouseMonitor extends Component<Props> {
@@ -55,7 +55,7 @@ class MouseMonitor extends Component<Props> {
     } = this.props;
 
     return (
-      <div ref={node => (this.container = node)}>
+      <div ref={(node) => (this.container = node)}>
         {React.cloneElement(children, restProps)}
       </div>
     );

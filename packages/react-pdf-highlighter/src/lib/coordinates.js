@@ -22,7 +22,7 @@ export const viewportToScaled = (
     y2: rect.top + rect.height,
 
     width,
-    height
+    height,
   };
 };
 
@@ -31,7 +31,7 @@ const pdfToViewport = (pdf, viewport): T_LTWH => {
     pdf.x1,
     pdf.y1,
     pdf.x2,
-    pdf.y2
+    pdf.y2,
   ]);
 
   return {
@@ -39,7 +39,7 @@ const pdfToViewport = (pdf, viewport): T_LTWH => {
     top: y1,
 
     width: x2 - x1,
-    height: y1 - y2
+    height: y1 - y2,
   };
 };
 
@@ -68,6 +68,6 @@ export const scaledToViewport = (
     left: x1,
     top: y1,
     width: x2 - x1,
-    height: y2 - y1
+    height: y2 - y1,
   };
 };

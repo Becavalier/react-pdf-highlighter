@@ -10,8 +10,8 @@ import {
   Tip,
   Highlight,
   Popup,
-  AreaHighlight
-} from "react-pdf-highlighter";
+  AreaHighlight,
+} from "@yhspy/react-pdf-highlighter";
 
 import testHighlights from "./test-highlights";
 
@@ -20,8 +20,8 @@ import Sidebar from "./Sidebar";
 
 import type {
   T_Highlight,
-  T_NewHighlight
-} from "react-pdf-highlighter/src/types";
+  T_NewHighlight,
+} from "@yhspy/react-pdf-highlighter/src/types";
 
 import "./style/App.css";
 
@@ -30,7 +30,7 @@ type T_ManuscriptHighlight = T_Highlight;
 type Props = {};
 
 type State = {
-  highlights: Array<T_ManuscriptHighlight>
+  highlights: Array<T_ManuscriptHighlight>,
 };
 
 const getNextId = () => String(Math.random()).slice(2);
@@ -56,14 +56,14 @@ const url = searchParams.get("url") || DEFAULT_URL;
 
 class App extends Component<Props, State> {
   state = {
-    highlights: testHighlights[url] ? [...testHighlights[url]] : []
+    highlights: testHighlights[url] ? [...testHighlights[url]] : [],
   };
 
   state: State;
 
   resetHighlights = () => {
     this.setState({
-      highlights: []
+      highlights: [],
     });
   };
 
@@ -88,7 +88,7 @@ class App extends Component<Props, State> {
   getHighlightById(id: string) {
     const { highlights } = this.state;
 
-    return highlights.find(highlight => highlight.id === id);
+    return highlights.find((highlight) => highlight.id === id);
   }
 
   addHighlight(highlight: T_NewHighlight) {
@@ -97,7 +97,7 @@ class App extends Component<Props, State> {
     console.log("Saving highlight", highlight);
 
     this.setState({
-      highlights: [{ ...highlight, id: getNextId() }, ...highlights]
+      highlights: [{ ...highlight, id: getNextId() }, ...highlights],
     });
   }
 
@@ -105,15 +105,15 @@ class App extends Component<Props, State> {
     console.log("Updating highlight", highlightId, position, content);
 
     this.setState({
-      highlights: this.state.highlights.map(h => {
+      highlights: this.state.highlights.map((h) => {
         return h.id === highlightId
           ? {
               ...h,
               position: { ...h.position, ...position },
-              content: { ...h.content, ...content }
+              content: { ...h.content, ...content },
             }
           : h;
-      })
+      }),
     });
   }
 
@@ -131,16 +131,16 @@ class App extends Component<Props, State> {
             height: "100vh",
             width: "75vw",
             overflowY: "scroll",
-            position: "relative"
+            position: "relative",
           }}
         >
           <PdfLoader url={url} beforeLoad={<Spinner />}>
-            {pdfDocument => (
+            {(pdfDocument) => (
               <PdfHighlighter
                 pdfDocument={pdfDocument}
-                enableAreaSelection={event => event.altKey}
+                enableAreaSelection={(event) => event.altKey}
                 onScrollChange={resetHash}
-                scrollRef={scrollTo => {
+                scrollRef={(scrollTo) => {
                   this.scrollViewerTo = scrollTo;
 
                   this.scrollToHighlightFromHash();
@@ -153,7 +153,7 @@ class App extends Component<Props, State> {
                 ) => (
                   <Tip
                     onOpen={transformSelection}
-                    onConfirm={comment => {
+                    onConfirm={(comment) => {
                       this.addHighlight({ content, position, comment });
 
                       hideTipAndSelection();
@@ -182,7 +182,7 @@ class App extends Component<Props, State> {
                   ) : (
                     <AreaHighlight
                       highlight={highlight}
-                      onChange={boundingRect => {
+                      onChange={(boundingRect) => {
                         this.updateHighlight(
                           highlight.id,
                           { boundingRect: viewportToScaled(boundingRect) },
@@ -195,8 +195,8 @@ class App extends Component<Props, State> {
                   return (
                     <Popup
                       popupContent={<HighlightPopup {...highlight} />}
-                      onMouseOver={popupContent =>
-                        setTip(highlight, highlight => popupContent)
+                      onMouseOver={(popupContent) =>
+                        setTip(highlight, (highlight) => popupContent)
                       }
                       onMouseOut={hideTip}
                       key={index}

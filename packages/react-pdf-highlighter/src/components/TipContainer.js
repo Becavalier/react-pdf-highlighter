@@ -6,14 +6,14 @@ import type { T_LTWH } from "../types";
 
 type State = {
   height: number,
-  width: number
+  width: number,
 };
 
 type Props = {
   children: ?React$Element<*>,
   style: { top: number, left: number, bottom: number },
   scrollTop: number,
-  pageBoundingRect: T_LTWH
+  pageBoundingRect: T_LTWH,
 };
 
 const clamp = (value, left, right) => Math.min(Math.max(value, left), right);
@@ -21,7 +21,7 @@ const clamp = (value, left, right) => Math.min(Math.max(value, left), right);
 class TipContainer extends Component<Props, State> {
   state: State = {
     height: 0,
-    width: 0
+    width: 0,
   };
 
   componentDidUpdate(nextProps: Props) {
@@ -41,7 +41,7 @@ class TipContainer extends Component<Props, State> {
 
     this.setState({
       height: offsetHeight,
-      width: offsetWidth
+      width: offsetWidth,
     });
   };
 
@@ -62,13 +62,13 @@ class TipContainer extends Component<Props, State> {
       pageBoundingRect.width - width
     );
 
-    const childrenWithProps = React.Children.map(children, child =>
+    const childrenWithProps = React.Children.map(children, (child) =>
       React.cloneElement(child, {
         onUpdate: () => {
           this.setState(
             {
               width: 0,
-              height: 0
+              height: 0,
             },
             () => {
               setTimeout(this.updatePosition, 0);
@@ -76,8 +76,8 @@ class TipContainer extends Component<Props, State> {
           );
         },
         popup: {
-          position: shouldMove ? "below" : "above"
-        }
+          position: shouldMove ? "below" : "above",
+        },
       })
     );
 
@@ -87,7 +87,7 @@ class TipContainer extends Component<Props, State> {
         style={{
           visibility: isStyleCalculationInProgress ? "hidden" : "visible",
           top,
-          left
+          left,
         }}
         ref="container"
       >

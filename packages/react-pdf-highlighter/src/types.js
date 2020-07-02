@@ -4,7 +4,7 @@ export type T_LTWH = {
   left: number,
   top: number,
   width: number,
-  height: number
+  height: number,
 };
 
 export type T_Scaled = {
@@ -15,32 +15,32 @@ export type T_Scaled = {
   y2: number,
 
   width: number,
-  height: number
+  height: number,
 };
 
 export type T_Position = {
   boundingRect: T_LTWH,
   rects: Array<T_LTWH>,
-  pageNumber: number
+  pageNumber: number,
 };
 
 export type T_ScaledPosition = {
   boundingRect: T_Scaled,
   rects: Array<T_Scaled>,
   pageNumber: number,
-  usePdfCoordinates?: boolean
+  usePdfCoordinates?: boolean,
 };
 
 export type T_NewHighlight = {
   position: T_ScaledPosition,
   content: {
     text?: string,
-    image?: string
+    image?: string,
   },
   comment: {
     text: string,
-    emoji: string
-  }
+    emoji: string,
+  },
 };
 
 export type T_Highlight = { id: string } & T_NewHighlight;
@@ -51,7 +51,7 @@ export type T_VIEWPORT = {
   convertToPdfPoint: (x: number, y: number) => Array<number>,
   convertToViewportRectangle: (pdfRectangle: Array<number>) => Array<number>,
   width: number,
-  height: number
+  height: number,
 };
 
 export type T_PDFJS_Viewer = {
@@ -63,33 +63,33 @@ export type T_PDFJS_Viewer = {
     textLayer: { textLayerDiv: HTMLDivElement },
     viewport: T_VIEWPORT,
     div: HTMLDivElement,
-    canvas: HTMLCanvasElement
+    canvas: HTMLCanvasElement,
   },
   setDocument: (document: T_PDFJS_Document) => Promise<void>,
   scrollPageIntoView: (options: {
     pageNumber: number,
-    destArray: Array<mixed>
+    destArray: Array<mixed>,
   }) => void,
-  currentScaleValue: string
+  currentScaleValue: string,
 };
 
 export type T_PDFJS_Document = {
-  numPages: number
+  numPages: number,
 };
 
 export type T_PDFJS_LinkService = {
   setDocument: (document: Object) => void,
-  setViewer: (viewer: T_PDFJS_Viewer) => void
+  setViewer: (viewer: T_PDFJS_Viewer) => void,
 };
 
 export type T_PDFJS = {
   TextLayerBuilder: {
     prototype: {
-      _bindMouse: () => void
-    }
+      _bindMouse: () => void,
+    },
   },
   PDFViewer: (options: Object) => T_PDFJS_Viewer,
   PDFLinkService: () => T_PDFJS_LinkService,
   getDocument: (url: string) => Promise<T_PDFJS_Document>,
-  disableWorker: boolean
+  disableWorker: boolean,
 };
